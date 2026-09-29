@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ActionsRouteImport } from './routes/actions'
 import { Route as HistoryRouteImport } from './routes/history'
+import { Route as PlaybooksRouteImport } from './routes/playbooks'
 import { Route as IncidentsIncidentIdRouteImport } from './routes/incidents.$incidentId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -18,9 +20,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ActionsRoute = ActionsRouteImport.update({
+  id: '/actions',
+  path: '/actions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HistoryRoute = HistoryRouteImport.update({
   id: '/history',
   path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlaybooksRoute = PlaybooksRouteImport.update({
+  id: '/playbooks',
+  path: '/playbooks',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IncidentsIncidentIdRoute = IncidentsIncidentIdRouteImport.update({
@@ -31,31 +43,46 @@ const IncidentsIncidentIdRoute = IncidentsIncidentIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/actions': typeof ActionsRoute
   '/history': typeof HistoryRoute
+  '/playbooks': typeof PlaybooksRoute
   '/incidents/$incidentId': typeof IncidentsIncidentIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/actions': typeof ActionsRoute
   '/history': typeof HistoryRoute
+  '/playbooks': typeof PlaybooksRoute
   '/incidents/$incidentId': typeof IncidentsIncidentIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/actions': typeof ActionsRoute
   '/history': typeof HistoryRoute
+  '/playbooks': typeof PlaybooksRoute
   '/incidents/$incidentId': typeof IncidentsIncidentIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/history' | '/incidents/$incidentId'
+  fullPaths:
+    '/' | '/actions' | '/history' | '/playbooks' | '/incidents/$incidentId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/history' | '/incidents/$incidentId'
-  id: '__root__' | '/' | '/history' | '/incidents/$incidentId'
+  to: '/' | '/actions' | '/history' | '/playbooks' | '/incidents/$incidentId'
+  id:
+    | '__root__'
+    | '/'
+    | '/actions'
+    | '/history'
+    | '/playbooks'
+    | '/incidents/$incidentId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ActionsRoute: typeof ActionsRoute
   HistoryRoute: typeof HistoryRoute
+  PlaybooksRoute: typeof PlaybooksRoute
   IncidentsIncidentIdRoute: typeof IncidentsIncidentIdRoute
 }
 
@@ -68,11 +95,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/actions': {
+      id: '/actions'
+      path: '/actions'
+      fullPath: '/actions'
+      preLoaderRoute: typeof ActionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/history': {
       id: '/history'
       path: '/history'
       fullPath: '/history'
       preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/playbooks': {
+      id: '/playbooks'
+      path: '/playbooks'
+      fullPath: '/playbooks'
+      preLoaderRoute: typeof PlaybooksRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/incidents/$incidentId': {
@@ -87,7 +128,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ActionsRoute: ActionsRoute,
   HistoryRoute: HistoryRoute,
+  PlaybooksRoute: PlaybooksRoute,
   IncidentsIncidentIdRoute: IncidentsIncidentIdRoute,
 }
 export const routeTree = rootRouteImport
