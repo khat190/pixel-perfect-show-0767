@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ActionsRouteImport } from './routes/actions'
+import { Route as AuditRouteImport } from './routes/audit'
+import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as HistoryRouteImport } from './routes/history'
+import { Route as LessonsRouteImport } from './routes/lessons'
 import { Route as PlaybooksRouteImport } from './routes/playbooks'
 import { Route as IncidentsIncidentIdRouteImport } from './routes/incidents.$incidentId'
 
@@ -25,9 +28,24 @@ const ActionsRoute = ActionsRouteImport.update({
   path: '/actions',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuditRoute = AuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExperienceRoute = ExperienceRouteImport.update({
+  id: '/experience',
+  path: '/experience',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HistoryRoute = HistoryRouteImport.update({
   id: '/history',
   path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LessonsRoute = LessonsRouteImport.update({
+  id: '/lessons',
+  path: '/lessons',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PlaybooksRoute = PlaybooksRouteImport.update({
@@ -44,14 +62,20 @@ const IncidentsIncidentIdRoute = IncidentsIncidentIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/actions': typeof ActionsRoute
+  '/audit': typeof AuditRoute
+  '/experience': typeof ExperienceRoute
   '/history': typeof HistoryRoute
+  '/lessons': typeof LessonsRoute
   '/playbooks': typeof PlaybooksRoute
   '/incidents/$incidentId': typeof IncidentsIncidentIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/actions': typeof ActionsRoute
+  '/audit': typeof AuditRoute
+  '/experience': typeof ExperienceRoute
   '/history': typeof HistoryRoute
+  '/lessons': typeof LessonsRoute
   '/playbooks': typeof PlaybooksRoute
   '/incidents/$incidentId': typeof IncidentsIncidentIdRoute
 }
@@ -59,21 +83,42 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/actions': typeof ActionsRoute
+  '/audit': typeof AuditRoute
+  '/experience': typeof ExperienceRoute
   '/history': typeof HistoryRoute
+  '/lessons': typeof LessonsRoute
   '/playbooks': typeof PlaybooksRoute
   '/incidents/$incidentId': typeof IncidentsIncidentIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/actions' | '/history' | '/playbooks' | '/incidents/$incidentId'
+    | '/'
+    | '/actions'
+    | '/audit'
+    | '/experience'
+    | '/history'
+    | '/lessons'
+    | '/playbooks'
+    | '/incidents/$incidentId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/actions' | '/history' | '/playbooks' | '/incidents/$incidentId'
+  to:
+    | '/'
+    | '/actions'
+    | '/audit'
+    | '/experience'
+    | '/history'
+    | '/lessons'
+    | '/playbooks'
+    | '/incidents/$incidentId'
   id:
     | '__root__'
     | '/'
     | '/actions'
+    | '/audit'
+    | '/experience'
     | '/history'
+    | '/lessons'
     | '/playbooks'
     | '/incidents/$incidentId'
   fileRoutesById: FileRoutesById
@@ -81,7 +126,10 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ActionsRoute: typeof ActionsRoute
+  AuditRoute: typeof AuditRoute
+  ExperienceRoute: typeof ExperienceRoute
   HistoryRoute: typeof HistoryRoute
+  LessonsRoute: typeof LessonsRoute
   PlaybooksRoute: typeof PlaybooksRoute
   IncidentsIncidentIdRoute: typeof IncidentsIncidentIdRoute
 }
@@ -102,11 +150,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ActionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/audit': {
+      id: '/audit'
+      path: '/audit'
+      fullPath: '/audit'
+      preLoaderRoute: typeof AuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/experience': {
+      id: '/experience'
+      path: '/experience'
+      fullPath: '/experience'
+      preLoaderRoute: typeof ExperienceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/history': {
       id: '/history'
       path: '/history'
       fullPath: '/history'
       preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lessons': {
+      id: '/lessons'
+      path: '/lessons'
+      fullPath: '/lessons'
+      preLoaderRoute: typeof LessonsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/playbooks': {
@@ -129,7 +198,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ActionsRoute: ActionsRoute,
+  AuditRoute: AuditRoute,
+  ExperienceRoute: ExperienceRoute,
   HistoryRoute: HistoryRoute,
+  LessonsRoute: LessonsRoute,
   PlaybooksRoute: PlaybooksRoute,
   IncidentsIncidentIdRoute: IncidentsIncidentIdRoute,
 }
