@@ -10,33 +10,128 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ActionsRouteImport } from './routes/actions'
+import { Route as AuditRouteImport } from './routes/audit'
+import { Route as ExperienceRouteImport } from './routes/experience'
+import { Route as HistoryRouteImport } from './routes/history'
+import { Route as LessonsRouteImport } from './routes/lessons'
+import { Route as PlaybooksRouteImport } from './routes/playbooks'
+import { Route as IncidentsIncidentIdRouteImport } from './routes/incidents.$incidentId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ActionsRoute = ActionsRouteImport.update({
+  id: '/actions',
+  path: '/actions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuditRoute = AuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExperienceRoute = ExperienceRouteImport.update({
+  id: '/experience',
+  path: '/experience',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LessonsRoute = LessonsRouteImport.update({
+  id: '/lessons',
+  path: '/lessons',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlaybooksRoute = PlaybooksRouteImport.update({
+  id: '/playbooks',
+  path: '/playbooks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IncidentsIncidentIdRoute = IncidentsIncidentIdRouteImport.update({
+  id: '/incidents/$incidentId',
+  path: '/incidents/$incidentId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/actions': typeof ActionsRoute
+  '/audit': typeof AuditRoute
+  '/experience': typeof ExperienceRoute
+  '/history': typeof HistoryRoute
+  '/lessons': typeof LessonsRoute
+  '/playbooks': typeof PlaybooksRoute
+  '/incidents/$incidentId': typeof IncidentsIncidentIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/actions': typeof ActionsRoute
+  '/audit': typeof AuditRoute
+  '/experience': typeof ExperienceRoute
+  '/history': typeof HistoryRoute
+  '/lessons': typeof LessonsRoute
+  '/playbooks': typeof PlaybooksRoute
+  '/incidents/$incidentId': typeof IncidentsIncidentIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/actions': typeof ActionsRoute
+  '/audit': typeof AuditRoute
+  '/experience': typeof ExperienceRoute
+  '/history': typeof HistoryRoute
+  '/lessons': typeof LessonsRoute
+  '/playbooks': typeof PlaybooksRoute
+  '/incidents/$incidentId': typeof IncidentsIncidentIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/actions'
+    | '/audit'
+    | '/experience'
+    | '/history'
+    | '/lessons'
+    | '/playbooks'
+    | '/incidents/$incidentId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/actions'
+    | '/audit'
+    | '/experience'
+    | '/history'
+    | '/lessons'
+    | '/playbooks'
+    | '/incidents/$incidentId'
+  id:
+    | '__root__'
+    | '/'
+    | '/actions'
+    | '/audit'
+    | '/experience'
+    | '/history'
+    | '/lessons'
+    | '/playbooks'
+    | '/incidents/$incidentId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ActionsRoute: typeof ActionsRoute
+  AuditRoute: typeof AuditRoute
+  ExperienceRoute: typeof ExperienceRoute
+  HistoryRoute: typeof HistoryRoute
+  LessonsRoute: typeof LessonsRoute
+  PlaybooksRoute: typeof PlaybooksRoute
+  IncidentsIncidentIdRoute: typeof IncidentsIncidentIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +143,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/actions': {
+      id: '/actions'
+      path: '/actions'
+      fullPath: '/actions'
+      preLoaderRoute: typeof ActionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/audit': {
+      id: '/audit'
+      path: '/audit'
+      fullPath: '/audit'
+      preLoaderRoute: typeof AuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/experience': {
+      id: '/experience'
+      path: '/experience'
+      fullPath: '/experience'
+      preLoaderRoute: typeof ExperienceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lessons': {
+      id: '/lessons'
+      path: '/lessons'
+      fullPath: '/lessons'
+      preLoaderRoute: typeof LessonsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/playbooks': {
+      id: '/playbooks'
+      path: '/playbooks'
+      fullPath: '/playbooks'
+      preLoaderRoute: typeof PlaybooksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/incidents/$incidentId': {
+      id: '/incidents/$incidentId'
+      path: '/incidents/$incidentId'
+      fullPath: '/incidents/$incidentId'
+      preLoaderRoute: typeof IncidentsIncidentIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ActionsRoute: ActionsRoute,
+  AuditRoute: AuditRoute,
+  ExperienceRoute: ExperienceRoute,
+  HistoryRoute: HistoryRoute,
+  LessonsRoute: LessonsRoute,
+  PlaybooksRoute: PlaybooksRoute,
+  IncidentsIncidentIdRoute: IncidentsIncidentIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
